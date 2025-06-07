@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+#main-app-container {
+    max-width: 750px;
+    margin: auto;
+    background: #fff;
+    padding: 10px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.section-box {
+    background: #fdfdfd;
+    border: 1px solid #a0a0a0;
+    border-radius: 6px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+#slot-display-area {
+    max-height: 300px;
+    overflow-y: auto; 
+    padding-right: 10px; 
+    margin-bottom: 15px; 
+}
+
+.slot-entry {
+    background: #e0dcdc;
+    border: 1px solid #ddd;
+    padding: 13px;
+    margin-bottom: 9px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.slot-entry.green {
+    background: #e9ffe9;
+    border-color: #4CAF50;
+}
+
+.slot-entry.chosen {
+    border: 2px solid #007bff;
+    background-color: #eaf6ff;
+}
+
+.slot-tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #fff;
+}
+
+.slot-tag.green-tag {
+    background-color: #4CAF50;
+}
+
+.slot-tag.normal-tag {
+    background-color: #999;
+}
+
+.hiden {
+    display: none !important;
+}
+
+.error-text {
+    background-color: #ffe0e0;
+    color: #cc0000;
+    border: 1px solid #ffb3b3;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.spinner-circle {
+    border: 3px solid rgba(0,0,0,0.1);
+    border-left-color: #007bff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    animation: spinner 0.9s linear infinite;
+    margin-bottom: 8px;
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

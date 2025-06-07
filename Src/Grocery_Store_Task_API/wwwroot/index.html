@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-app-container">
+        <h1>Order Products</h1>
+
+        <div id="loader" class="hiden">
+            <div class="spinner-circle"></div>
+            <p>Loading data...</p>
+        </div>
+        <p id="error-msg" class="error-text hiden"></p>
+
+        <section class="section-box">
+            <h2>Select Products</h2>
+            <form id="product-form">
+                <label for="the-products">Choose from list:</label>
+                <select id="the-products" multiple size="7">
+                    </select>
+                <button type="submit" id="get-delivery-slots">Show Available Delivery Time</button>
+            </form>
+        </section>
+
+        <section class="section-box hiden" id="time-slots-section">
+            <h2>Delivery Slots</h2>
+            <div id="slot-display-area">
+                </div>
+            <p id="no-slots-found" class="error-msg hiden">No delivery slots Found...contact Support</p>
+        </section>
+
+        <section class="section-box hiden" id="confirm-order-section">
+            <button id="place-order-button">Place Order</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

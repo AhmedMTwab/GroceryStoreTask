@@ -1,0 +1,22 @@
+﻿@Grocery_Store_Task_API_HostAddress = https://localhost:7184
+
+
+POST {{Grocery_Store_Task_API_HostAddress}}/api/cart
+Content-Type: application/json
+
+{
+  //AddCartCommand
+}
+
+###
+
+GET {{Grocery_Store_Task_API_HostAddress}}/api/product
+
+###
+
+
+
+
+GET {{Grocery_Store_Task_API_HostAddress}}/api/schedule?productIds=a1b2c3d4-e5f6-7000-8000-000000000001&productIds=a1b2c3d4-e5f6-7000-8000-000000000002&productIds=a1b2c3d4-e5f6-7000-8000-000000000003&orderDate=6%2F7%2F2025%2C+2%3A43%3A55+PM
+
+###
