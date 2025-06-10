@@ -20,7 +20,9 @@ namespace Grocery_Store_Task_API
             builder.Services.AddApplicationServices(builder.Configuration);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(option =>
+            option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"))
+            );
             builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration) =>
             {
 

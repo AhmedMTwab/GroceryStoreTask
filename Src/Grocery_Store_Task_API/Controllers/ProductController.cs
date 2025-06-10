@@ -12,20 +12,13 @@ namespace Grocery_Store_Task_API.Controllers
         [HttpGet]
         public async Task<ActionResult<GetProductDTO>> GetAllProducts()
         {
-            try
-            {
-                var products = await mediator.Send(new GetAllProductsQuery());
-                if (products != null)
-                {
-                    return Ok(products);
-                }
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return Problem($"{ex.Message}");
-            }
 
+            var products = await mediator.Send(new GetAllProductsQuery());
+            if (products != null)
+            {
+                return Ok(products);
+            }
+            return NotFound();
         }
     }
 }

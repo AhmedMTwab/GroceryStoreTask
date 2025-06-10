@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using Grocery_Store_Task_CORE.DTOs.ProductDTOs;
+﻿using Grocery_Store_Task_CORE.DTOs.ProductDTOs;
 using Grocery_Store_Task_CORE.ServicesAbstraction.IProductServices;
 using Grocery_Store_Task_DOMAIN.Exceptions;
 using MediatR;
@@ -21,7 +20,7 @@ namespace Grocery_Store_Task_CORE.Queries.ProductQueries
             }
             catch (Exception ex)
             {
-                throw new Exception("Error Fetching Products",ex);
+                throw new Exception("Error Fetching Products", ex);
             }
         }
     }

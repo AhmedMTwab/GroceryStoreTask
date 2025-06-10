@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
+using FluentAssertions;
 using Grocery_Store_Task_CORE.DTOs.DeliveryDTOs;
 using Grocery_Store_Task_CORE.Services.DeliveryServices;
 using Grocery_Store_Task_CORE.ServicesAbstraction.IDeliveryServices;
 using Grocery_Store_Task_CORE.ServicesAbstraction.IProductServices;
 using Grocery_Store_Task_CORE.ServicesAbstraction.ITimeSlotServices;
 using Grocery_Store_Task_DOMAIN.Enums;
-using Grocery_Store_Task_DOMAIN.Exceptions;
 using Grocery_Store_Task_DOMAIN.Models;
 using Moq;
 using Xunit;
-using FluentAssertions;
 
 namespace Grocery_Store_Task_CORE.Queries.DeliveryQueries.Tests
 {
@@ -30,7 +29,7 @@ namespace Grocery_Store_Task_CORE.Queries.DeliveryQueries.Tests
             _mockGenerateTimeSlots = new Mock<IGenerateTimeSlotsService>();
             _mockMapper = new Mock<IMapper>();
 
-            
+
             _handler = new GetDeliveryTimeSlotsQueryHandler(
                 _mockProductsByIdServices.Object,
                 _mockGetMaximumDeliveryType.Object,
@@ -58,8 +57,8 @@ namespace Grocery_Store_Task_CORE.Queries.DeliveryQueries.Tests
             new Product { Id = product1Id, Name = "Laptop", Category = ProductTypeEnum.InStock },
             new Product { Id = product2Id, Name = "Milk", Category = ProductTypeEnum.ExternalProduct }
         };
-            var minimumDeliveryType = ProductTypeEnum.ExternalProduct; 
-            var firstTimeSlotDate = new DateTime(2025, 6, 8, 9, 0, 0); 
+            var minimumDeliveryType = ProductTypeEnum.ExternalProduct;
+            var firstTimeSlotDate = new DateTime(2025, 6, 8, 9, 0, 0);
             var generatedTimeSlots = new List<TimeSlot>
         {
             new TimeSlot { StartDate = new DateTime(2025, 6, 8, 9, 0, 0) , IsGreen = true },
@@ -95,7 +94,7 @@ namespace Grocery_Store_Task_CORE.Queries.DeliveryQueries.Tests
             _mockMapper.Verify(m => m.Map<IEnumerable<TimeSlotDTO>>(generatedTimeSlots), Times.Once);
         }
 
-      
+
 
         [Fact]
         public async Task Handle_ThrowsGenericException_OnServiceFailure()

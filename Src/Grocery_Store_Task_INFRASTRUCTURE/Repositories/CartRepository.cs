@@ -9,31 +9,31 @@ namespace Grocery_Store_Task_INFRASTRUCTURE.Repositories
     {
         public async Task AddCart(Cart cart)
         {
-           
-                db.Carts.Add(cart); 
-                await db.SaveChangesAsync();
-           
+
+            db.Carts.Add(cart);
+            await db.SaveChangesAsync();
+
         }
         public async Task<IEnumerable<TimeSlot>> GetAllCartsTimeSlots()
         {
-           
-                var TimeSlots = await db.Carts.Include(c=>c.TimeSlot).Select(c => c.TimeSlot).ToListAsync();
-                return TimeSlots;
-          
+
+            var TimeSlots = await db.Carts.Include(c => c.TimeSlot).Select(c => c.TimeSlot).ToListAsync();
+            return TimeSlots;
+
         }
         public async Task<IEnumerable<Cart>> GetAllCarts()
         {
-                var carts = await db.Carts.Include(c => c.TimeSlot).ToListAsync();
-                return carts;
-          
+            var carts = await db.Carts.Include(c => c.TimeSlot).ToListAsync();
+            return carts;
+
         }
 
         public async Task<IEnumerable<TimeSlot>> GetAllCartsMatchedTimeSlotsAsync(TimeSlot Time)
         {
-           
-                var TimeSlots = await db.Carts.Include(c=>c.TimeSlot).Select(c => c.TimeSlot).Where(t=>t.StartDate==Time.StartDate).ToListAsync();
-                return TimeSlots;
-           
+
+            var TimeSlots = await db.Carts.Include(c => c.TimeSlot).Select(c => c.TimeSlot).Where(t => t.StartDate == Time.StartDate).ToListAsync();
+            return TimeSlots;
+
         }
     }
 }

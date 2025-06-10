@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Grocery_Store_Task_API</name>
+    </assembly>
+    <members>
+        <member name="M:Grocery_Store_Task_API.Controllers.ScheduleController.GetTimeSlots(Grocery_Store_Task_CORE.Queries.DeliveryQueries.GetDeliveryTimeSlotsQuery,FluentValidation.IValidator{Grocery_Store_Task_CORE.Queries.DeliveryQueries.GetDeliveryTimeSlotsQuery})">
+            <summary>
+            Green Slots are Slots with less than 4 ordered carts
+            </summary>
+            <param name="getDeliveryTimeSlotsQuery"></param>
+            <param name="validator"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

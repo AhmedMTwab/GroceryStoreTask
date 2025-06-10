@@ -20,3 +20,4 @@ GET {{Grocery_Store_Task_API_HostAddress}}/api/product
 GET {{Grocery_Store_Task_API_HostAddress}}/api/schedule?productIds=a1b2c3d4-e5f6-7000-8000-000000000001&productIds=a1b2c3d4-e5f6-7000-8000-000000000002&productIds=a1b2c3d4-e5f6-7000-8000-000000000003&orderDate=6%2F7%2F2025%2C+2%3A43%3A55+PM
 
 ###
+GET {{Grocery_Store_Task_API_HostAddress}}/api/Schedule?productIds=a1b2c3d4-e5f6-7000-8000-000000000002&productIds=a1b2c3d4-e5f6-7000-8000-000000000003&productIds=a1b2c3d4-e5f6-7000-8000-000000000004&orderDate=10%2F06%2F2025%2C+04%3A16%3A56

@@ -1,5 +1,4 @@
-﻿using Grocery_Store_Task_DOMAIN.Models;
-using MediatR;
+﻿using MediatR;
 
 namespace Grocery_Store_Task_CORE.Commands.CartCommands
 {

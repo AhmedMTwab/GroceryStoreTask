@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Grocery_Store_Task_CORE.DTOs.ProductDTOs;
-using Grocery_Store_Task_CORE.Queries.ProductQueries;
 using Grocery_Store_Task_CORE.ServicesAbstraction.IProductServices;
 using Grocery_Store_Task_DOMAIN.Exceptions;
 using Moq;
@@ -22,7 +16,7 @@ namespace Grocery_Store_Task_CORE.Queries.ProductQueries.Tests
         {
             _mockGetAllProductService = new Mock<IGetAllProductService>();
 
-            
+
             _handler = new GetAllProductsQueryHandler(_mockGetAllProductService.Object);
         }
 
@@ -30,7 +24,7 @@ namespace Grocery_Store_Task_CORE.Queries.ProductQueries.Tests
         public async Task Handle_ReturnsAllProducts_OnSuccess()
         {
             // Arrange
-            var query = new GetAllProductsQuery(); 
+            var query = new GetAllProductsQuery();
 
             var expectedProducts = new List<GetProductDTO>
         {
@@ -66,7 +60,7 @@ namespace Grocery_Store_Task_CORE.Queries.ProductQueries.Tests
             await action.Should().ThrowAsync<Exception>()
                 .WithMessage("Error Fetching Products")
                 .WithInnerException<Exception, NotFoundException>();
-                
+
 
             _mockGetAllProductService.Verify(s => s.GetAllProductsAsync(), Times.Once);
         }
@@ -76,7 +70,7 @@ namespace Grocery_Store_Task_CORE.Queries.ProductQueries.Tests
         {
             // Arrange
             var query = new GetAllProductsQuery();
-            var emptyProducts = new List<GetProductDTO>(); 
+            var emptyProducts = new List<GetProductDTO>();
 
             _mockGetAllProductService.Setup(s => s.GetAllProductsAsync())
                 .ReturnsAsync(emptyProducts);
@@ -98,7 +92,7 @@ namespace Grocery_Store_Task_CORE.Queries.ProductQueries.Tests
             var innerException = new InvalidOperationException("Database connection failed.");
 
             _mockGetAllProductService.Setup(s => s.GetAllProductsAsync())
-                .ThrowsAsync(innerException); 
+                .ThrowsAsync(innerException);
 
             // Act
             Func<Task> action = async () => await _handler.Handle(query, CancellationToken.None);

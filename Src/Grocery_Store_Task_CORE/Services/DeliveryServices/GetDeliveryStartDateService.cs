@@ -1,5 +1,4 @@
 ﻿using Grocery_Store_Task_CORE.ServicesAbstraction.IDeliveryServices;
-using Grocery_Store_Task_CORE.ServicesAbstraction.IProductServices;
 using Grocery_Store_Task_DOMAIN.Enums;
 
 namespace Grocery_Store_Task_CORE.Services.DeliveryServices
@@ -12,25 +11,25 @@ namespace Grocery_Store_Task_CORE.Services.DeliveryServices
         private const int DailyDeliveryStartHour = 8;
         public DateTime GetStartDate(ProductTypeEnum maximumType, DateTime orderDate)
         {
-          
-                DateTime startDate = orderDate;
-                if ((maximumType == ProductTypeEnum.InStock && orderDate.Hour < InStockSameDayDiliveryLimit) || (maximumType == ProductTypeEnum.FreshFood && orderDate.Hour < FreshFoodSameDayDelveryLimit))
-                {
-                    startDate = orderDate;
-                }
-                else if (maximumType == ProductTypeEnum.ExternalProduct)
-                {
-                    startDate = startDate.Date.AddDays(ExternalProductLeadDays).AddHours(DailyDeliveryStartHour);
-                }
-                else
-                {
-                    startDate = startDate.Date.AddDays(1).AddHours(DailyDeliveryStartHour);
-                }
-                if (!IsWeekDay(startDate, maximumType))
-                    return ToValidWeekDay(startDate, maximumType);
-                return startDate;
-           
-           
+
+            DateTime startDate = orderDate;
+            if ((maximumType == ProductTypeEnum.InStock && orderDate.Hour < InStockSameDayDiliveryLimit) || (maximumType == ProductTypeEnum.FreshFood && orderDate.Hour < FreshFoodSameDayDelveryLimit))
+            {
+                startDate = orderDate;
+            }
+            else if (maximumType == ProductTypeEnum.ExternalProduct)
+            {
+                startDate = startDate.Date.AddDays(ExternalProductLeadDays).AddHours(DailyDeliveryStartHour);
+            }
+            else
+            {
+                startDate = startDate.Date.AddDays(1).AddHours(DailyDeliveryStartHour);
+            }
+            if (!IsWeekDay(startDate, maximumType))
+                return ToValidWeekDay(startDate, maximumType);
+            return startDate;
+
+
         }
         public bool IsWeekDay(DateTime startDate, ProductTypeEnum productType)
         {
@@ -82,7 +81,7 @@ namespace Grocery_Store_Task_CORE.Services.DeliveryServices
                 }
 
             }
-             
+
             return startDate.Date.AddHours(DailyDeliveryStartHour);
         }
     }

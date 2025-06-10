@@ -20,13 +20,25 @@
             }
             catch (Exception ex)
             {
+                var errorType = ex.GetType().ToString();
+
                 if (ex.InnerException != null)
                 {
-                    _logger.LogError("Error Occurd: {ErrorType} ErrorMessage:{ErrorMessage}", ex.InnerException.GetType().ToString(), ex.Message);
+                    var message = ex.InnerException.Message;
+                    errorType = ex.InnerException.GetType().ToString();
+                    _logger.LogError("Error Occurd: {ErrorType} ErrorMessage:{ErrorMessage}", errorType, message);
+                    await httpContext.Response.WriteAsync($"Error Occurd: {errorType} ErrorMessage:{message}");
+                    if (errorType == "NotFoundException")
+                    {
+                        httpContext.Response.StatusCode = 404;
+                    }
                 }
                 else
                 {
-                    _logger.LogError("Error Occurd: {ErrorType} ErrorMessage:{ErrorMessage}", ex.GetType().ToString(), ex.Message);
+                    var message = ex.Message;
+                    _logger.LogError("Error Occurd: {ErrorType} ErrorMessage:{ErrorMessage}", errorType, message);
+                    await httpContext.Response.WriteAsync($"Error Occurd: {errorType} ErrorMessage:{message}");
+
                 }
                 httpContext.Response.StatusCode = 500;
                 throw;

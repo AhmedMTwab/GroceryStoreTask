@@ -6,11 +6,11 @@ namespace Grocery_Store_Task_CORE.Services.TimeSlotServices
 {
     public class GetGreenSlotsService(ICartRepository cartRepository) : IGetGreenSlotsService
     {
-        public async Task<bool> IsGreenSlot(TimeSlot slot,IEnumerable<TimeSlot> allTimeSLots)
+        public async Task<bool> IsGreenSlot(TimeSlot slot, IEnumerable<TimeSlot> allTimeSLots)
         {
             try
             {
-                var matchedTimeSlots= allTimeSLots.Where(t=>t.StartDate==slot.StartDate).ToList();
+                var matchedTimeSlots = allTimeSLots.Where(t => t.StartDate == slot.StartDate).ToList();
                 if (matchedTimeSlots.Any(s => s.IsGreen == false) || matchedTimeSlots.Count() >= 4)
                 {
                     return false;
@@ -21,8 +21,8 @@ namespace Grocery_Store_Task_CORE.Services.TimeSlotServices
             {
                 throw new Exception("Error Fetching Matched Time SLots", ex);
             }
-          
-            
+
+
         }
     }
 }

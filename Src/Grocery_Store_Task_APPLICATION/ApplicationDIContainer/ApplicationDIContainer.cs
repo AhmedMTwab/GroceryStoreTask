@@ -1,5 +1,4 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using Grocery_Store_Task_CORE.DTOs.DeliveryDTOs;
 using Grocery_Store_Task_CORE.Services.CartServices;
 using Grocery_Store_Task_CORE.Services.DeliveryServices;
@@ -33,7 +32,7 @@ namespace Grocery_Store_Task_CORE.ApplicationDIContainer
             //TimeSlot services Registeration
             services.AddScoped<IGenerateTimeSlotsService, GenerateTimeslotsService>();
             //Cart services Registeration
-            services.AddScoped<IGetAllCartsTimeSLotsService,GetAllCartsTimeSlotsService>();
+            services.AddScoped<IGetAllCartsTimeSLotsService, GetAllCartsTimeSlotsService>();
 
             //Two Ways To get Green Slots
             var activeService = configuration.GetSection("GreenSlotServiceConfiguration:ActiveService").Value;
@@ -55,7 +54,7 @@ namespace Grocery_Store_Task_CORE.ApplicationDIContainer
                     }
             }
 
-           
+
 
 
         }

@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDeliveryTimes = [];
     let chosenDeliverySlot = null;
 
-    const API_BASE = ' https://grocerystoretask.tryasp.net/api'; 
-
+    const API_BASE = ' https://grocerystoretask.tryasp.net/api';
+    //const API_BASE = ' https://localhost:7184/api'; 
     const ShowElement = (element) => element.classList.remove('hiden');
     const HideElement = (element) => element.classList.add('hiden');
     const setLoading = (isBusy) => {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearError();
         try {
             const response = await fetch(`${API_BASE}/Product`);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            if (!response.ok) throw new Error(`HTTP status: ${response.status} With ${await response.json()}`); 
             allProductsData = await response.json();
             putProductsInSelect(allProductsData);
         } catch (e) {
@@ -95,7 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
          const queryParams = new URLSearchParams();
         productsIds.forEach(id => queryParams.append('productIds', id));
-        queryParams.append('orderDate', new Date().toLocaleString())
+        const now = new Date();
+        const formattedDate = now.toLocaleString('en-US', {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+        queryParams.append('orderDate', formattedDate)
         const queryString = queryParams.toString();
         
         try {
@@ -103,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'GET',
             });
 
-            if (!response.ok) throw new Error(`HTTP status: ${response.status}`); 
+            if (!response.ok) throw new Error(`HTTP status: ${response.status} With ${await response.json()}`); 
             currentDeliveryTimes = await response.json();
             displaySlots(currentDeliveryTimes);
 
@@ -198,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const apiError = await response.text();
                 showError(`Order failed: ${apiError || 'Bad request from server'}`);
             } else {
-                throw new Error(`API response: ${response.status}`);
+                throw new Error(`HTTP status: ${response.status} With ${await response.json()}`); 
             }
         } catch (e) {
             console.error('Cart confirm error:', e);

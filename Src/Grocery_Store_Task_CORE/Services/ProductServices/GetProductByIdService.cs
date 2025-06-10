@@ -48,9 +48,10 @@ namespace Grocery_Store_Task_CORE.Services.ProductServices
                     throw new NotFoundException("Product list not found");
                 return products;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new Exception("Error Fetching Products", ex);
-                    }
+            }
         }
 
     }

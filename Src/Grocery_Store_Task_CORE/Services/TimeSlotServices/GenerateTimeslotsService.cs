@@ -6,12 +6,12 @@ using Grocery_Store_Task_DOMAIN.Models;
 
 namespace Grocery_Store_Task_CORE.Services.TimeSlotServices
 {
-    public class GenerateTimeslotsService(IGetDeliveryStartDateService getDeliveryStartDate, IGetGreenSlotsService getGreenSlotsService,IGetAllCartsTimeSLotsService getAllCartsTimeSLotsService) : IGenerateTimeSlotsService
+    public class GenerateTimeslotsService(IGetDeliveryStartDateService getDeliveryStartDate, IGetGreenSlotsService getGreenSlotsService, IGetAllCartsTimeSLotsService getAllCartsTimeSLotsService) : IGenerateTimeSlotsService
     {
         public async Task<IEnumerable<TimeSlot>> GenerateSlotsFromStartDate(DateTime startdate, DateTime orderDate, int numberofDays, ProductTypeEnum productType)
         {
             List<TimeSlot> slots = new List<TimeSlot>();
-            var allCartsTimeSlots=await getAllCartsTimeSLotsService.GetAllCartsTimeSlots();
+            var allCartsTimeSlots = await getAllCartsTimeSLotsService.GetAllCartsTimeSlots();
 
             DateTime newDay = startdate.Date;
             DateTime lastValidDay = orderDate.AddDays(numberofDays - 1);
@@ -26,7 +26,7 @@ namespace Grocery_Store_Task_CORE.Services.TimeSlotServices
                         sameDaySlotDate = sameDaySlotDate.AddHours(1);
                         TimeSlot sameDaySlot = new TimeSlot();
                         sameDaySlot.StartDate = new DateTime(sameDaySlotDate.Year, sameDaySlotDate.Month, sameDaySlotDate.Day, sameDaySlotDate.Hour, 0, 0);
-                        sameDaySlot.IsGreen = await getGreenSlotsService.IsGreenSlot(sameDaySlot,allCartsTimeSlots);
+                        sameDaySlot.IsGreen = await getGreenSlotsService.IsGreenSlot(sameDaySlot, allCartsTimeSlots);
                         slots.Add(sameDaySlot);
                     }
                     continue;
@@ -40,7 +40,7 @@ namespace Grocery_Store_Task_CORE.Services.TimeSlotServices
                     {
                         StartDate = nextdayHour,
                     };
-                    newTimeSlot.IsGreen = await getGreenSlotsService.IsGreenSlot(newTimeSlot,allCartsTimeSlots);
+                    newTimeSlot.IsGreen = await getGreenSlotsService.IsGreenSlot(newTimeSlot, allCartsTimeSlots);
                     slots.Add(newTimeSlot);
 
                 }
@@ -50,7 +50,7 @@ namespace Grocery_Store_Task_CORE.Services.TimeSlotServices
             return orderdSlots;
 
         }
-       
+
 
     }
 }
