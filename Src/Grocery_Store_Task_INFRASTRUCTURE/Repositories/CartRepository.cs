@@ -17,7 +17,7 @@ namespace Grocery_Store_Task_INFRASTRUCTURE.Repositories
         public async Task<IEnumerable<TimeSlot>> GetAllCartsTimeSlots()
         {
 
-            var TimeSlots = await db.Carts.Include(c => c.TimeSlot).Select(c => c.TimeSlot).ToListAsync();
+            var TimeSlots = await db.Carts.Select(c => c.TimeSlot).ToListAsync();
             return TimeSlots;
 
         }
@@ -31,7 +31,7 @@ namespace Grocery_Store_Task_INFRASTRUCTURE.Repositories
         public async Task<IEnumerable<TimeSlot>> GetAllCartsMatchedTimeSlotsAsync(TimeSlot Time)
         {
 
-            var TimeSlots = await db.Carts.Include(c => c.TimeSlot).Select(c => c.TimeSlot).Where(t => t.StartDate == Time.StartDate).ToListAsync();
+            var TimeSlots = await db.Carts.Select(c => c.TimeSlot).Where(t => t.StartDate == Time.StartDate).ToListAsync();
             return TimeSlots;
 
         }

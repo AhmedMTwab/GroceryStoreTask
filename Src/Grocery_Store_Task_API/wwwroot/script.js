@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDeliveryTimes = [];
     let chosenDeliverySlot = null;
 
-    const API_BASE = ' https://grocerystoretask.tryasp.net/api';
-    //const API_BASE = ' https://localhost:7184/api'; 
+    const API_BASE = ' https://grocerystoretask.tryasp.net/api'; 
     const ShowElement = (element) => element.classList.remove('hiden');
     const HideElement = (element) => element.classList.add('hiden');
     const setLoading = (isBusy) => {
